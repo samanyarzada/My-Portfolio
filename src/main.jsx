@@ -1,0 +1,12 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <div>
+      <h1 className="text-3xl font-bold underline">Introduction To Me</h1>
+      <p>My name is Saman Yarzada</p>
+    </div>
+  </StrictMode>,
+);
