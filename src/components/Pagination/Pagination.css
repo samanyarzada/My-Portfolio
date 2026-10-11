@@ -1,0 +1,70 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-block-start: var(--space-7);
+}
+
+.page-btn {
+  min-width: 42px;
+  height: 42px;
+  padding-inline: 0.8rem;
+  display: inline-grid;
+  place-items: center;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-pill);
+  transition:
+    transform var(--transition-fast),
+    color var(--transition),
+    background var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.page-btn:hover:not(:disabled):not(.active) {
+  color: #fff;
+  border-color: rgba(0, 184, 255, 0.55);
+  background: rgba(0, 184, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.page-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(0, 184, 255, 0.35), rgba(91, 26, 140, 0.5));
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 18px rgba(0, 184, 255, 0.35);
+}
+
+.page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.page-ellipsis {
+  padding-inline: 0.3rem;
+  color: var(--text-muted);
+}
+
+/* Chevron direction: prev points back, next points forward, in both LTR and RTL */
+.page-btn .chev {
+  width: 18px;
+  height: 18px;
+}
+
+.page-btn.prev .chev {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .page-btn.prev .chev {
+  transform: none;
+}
+
+html[dir="rtl"] .page-btn.next .chev {
+  transform: scaleX(-1);
+}

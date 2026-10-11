@@ -1,12 +1,16 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App.jsx";
+import { LanguageProvider } from "./context/LanguageContext.jsx";
+import "./styles/global.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <div>
-      <h1 className="text-3xl font-bold underline">Introduction To Me</h1>
-      <p>My name is Saman Yarzada</p>
-    </div>
-  </StrictMode>,
+    <BrowserRouter>
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    </BrowserRouter>
+  </StrictMode>
 );

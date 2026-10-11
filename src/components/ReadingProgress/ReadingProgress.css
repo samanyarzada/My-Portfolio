@@ -1,0 +1,23 @@
+.reading-progress {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: calc(var(--z-navbar) + 1);
+  height: 3px;
+  pointer-events: none;
+}
+
+.reading-progress-bar {
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-neon);
+  box-shadow: 0 0 14px rgba(0, 184, 255, 0.7);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* In Persian the bar fills from the right */
+html[dir="rtl"] .reading-progress-bar {
+  transform-origin: right center;
+}

@@ -1,0 +1,38 @@
+.lang-switch {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-medium);
+  /* EN | FA keeps the same order in both directions */
+  direction: ltr;
+}
+
+.lang-btn {
+  padding: 0.3rem 0.8rem;
+  font-family: var(--font-en);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border-radius: var(--radius-pill);
+  transition:
+    color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+}
+
+.lang-btn:hover {
+  color: var(--text-primary);
+}
+
+.lang-btn.active {
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 184, 255, 0.35),
+    rgba(91, 26, 140, 0.5)
+  );
+  box-shadow: 0 0 14px rgba(0, 184, 255, 0.3);
+}

@@ -1,0 +1,123 @@
+/* ---------- Header ---------- */
+.blog-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding-block: var(--space-8) var(--space-6);
+}
+
+.blog-head .section-title {
+  margin-block-end: 0;
+  padding-block-end: 0.1em;
+}
+
+/* ---------- Toolbar ---------- */
+.blog-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.search-field {
+  position: relative;
+  width: min(100%, 560px);
+}
+
+.search-input {
+  height: 52px;
+  padding-inline: 3rem;
+  border-radius: var(--radius-pill);
+}
+
+.search-icon {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 1.1rem;
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: color var(--transition);
+}
+
+.search-field:focus-within .search-icon {
+  color: var(--neon-blue);
+}
+
+.search-clear {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 0.55rem;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: var(--text-secondary);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: color var(--transition), background var(--transition);
+}
+
+.search-clear svg {
+  width: 17px;
+  height: 17px;
+}
+
+.search-clear:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------- Results ---------- */
+.blog-results {
+  padding-block: var(--space-6) 0;
+  /* so the sticky navbar does not cover the list after scrollIntoView */
+  scroll-margin-top: calc(var(--navbar-height) + 1rem);
+}
+
+.results-count {
+  margin-block-end: var(--space-4);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-5);
+}
+
+/* ---------- Empty state ---------- */
+.blog-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-5);
+  text-align: center;
+}
+
+.empty-icon {
+  width: 46px;
+  height: 46px;
+  color: var(--neon-blue);
+  filter: drop-shadow(0 0 14px rgba(0, 184, 255, 0.6));
+}
+
+.blog-empty p {
+  max-width: 40ch;
+  margin-block-end: var(--space-2);
+}
+
+@media (max-width: 820px) {
+  .blog-head {
+    padding-block-start: var(--space-6);
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}

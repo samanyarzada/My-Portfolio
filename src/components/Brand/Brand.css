@@ -1,0 +1,41 @@
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  font-family: var(--font-en);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--neon-blue);
+  background: var(--bg-elevated);
+  border: 1px solid rgba(0, 184, 255, 0.45);
+  box-shadow: 0 0 16px rgba(0, 184, 255, 0.25);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.brand:hover .brand-mark {
+  box-shadow: var(--glow-blue);
+  transform: rotate(-4deg);
+}
+
+.brand-name {
+  font-family: var(--font-en);
+  /* Keep "Saman.dev" in the same order in RTL too */
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.brand-name span {
+  color: var(--neon-blue);
+  text-shadow: 0 0 14px rgba(0, 184, 255, 0.55);
+}
