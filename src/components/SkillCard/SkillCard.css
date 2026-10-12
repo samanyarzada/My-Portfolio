@@ -1,0 +1,75 @@
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+  padding: var(--space-5);
+}
+
+.skill-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.skill-name {
+  font-size: var(--fs-lg);
+  direction: ltr;
+}
+
+.skill-level {
+  padding: 0.2rem 0.75rem;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  white-space: nowrap;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-medium);
+}
+
+.level-learning {
+  color: #ff7a93;
+  border-color: rgba(255, 42, 85, 0.5);
+  background: rgba(255, 42, 85, 0.08);
+}
+
+.level-comfortable {
+  color: var(--neon-blue);
+  border-color: rgba(0, 184, 255, 0.5);
+  background: rgba(0, 184, 255, 0.08);
+}
+
+.level-confident {
+  color: var(--teal);
+  border-color: rgba(0, 229, 255, 0.55);
+  background: rgba(0, 229, 255, 0.08);
+}
+
+.skill-desc {
+  flex: 1;
+  font-size: var(--fs-sm);
+}
+
+.skill-meter {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.meter-bar {
+  height: 5px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+.meter-bar.on {
+  background: var(--gradient-cool);
+  box-shadow: 0 0 10px rgba(0, 184, 255, 0.5);
+}
+
+.level-learning ~ .skill-desc,
+.skill-card:has(.level-learning) .meter-bar.on {
+  background: linear-gradient(90deg, var(--neon-red), #b3123a);
+  box-shadow: 0 0 10px rgba(255, 42, 85, 0.45);
+}

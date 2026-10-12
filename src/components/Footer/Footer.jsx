@@ -7,11 +7,12 @@ import "./Footer.css";
 
 const links = [
   { to: "/", key: "nav.home" },
-  { to: "/blog", key: "nav.blog" },
+  { to: "/projects", key: "nav.projects" },
+  { to: "/skills", key: "nav.skills" },
   { to: "/about", key: "nav.about" },
+  { to: "/blog", key: "nav.blog" },
   { to: "/contact", key: "nav.contact" },
 ];
-
 export default function Footer() {
   const { t, l } = useTranslation();
   const year = new Date().getFullYear();

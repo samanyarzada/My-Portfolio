@@ -39,10 +39,10 @@ export default function Home() {
             <p className="hero-tagline fade-up delay-2">{l(profile.tagline)}</p>
 
             <div className="hero-actions fade-up delay-3">
-              <EmailButton />
-              <Link to="/blog" className="btn btn-ghost">
-                {t("home.viewBlog")} <span className="arrow">→</span>
+              <Link to="/projects" className="btn btn-primary">
+                {t("home.viewProjects")} <span className="arrow">→</span>
               </Link>
+              <EmailButton variant="ghost" />
             </div>
 
             <div className="fade-up delay-4">

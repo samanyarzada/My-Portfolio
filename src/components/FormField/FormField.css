@@ -1,0 +1,56 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.field-label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.field-required {
+  margin-inline-start: 0.25rem;
+  color: var(--neon-red);
+}
+
+.field-control {
+  min-height: 50px;
+}
+
+textarea.field-control {
+  min-height: 160px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.field.has-error .field-control {
+  border-color: var(--neon-red);
+  background: rgba(255, 42, 85, 0.05);
+}
+
+.field.has-error .field-control:focus {
+  box-shadow: 0 0 0 4px rgba(255, 42, 85, 0.18);
+}
+
+.field-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 1.3rem;
+}
+
+.field-error {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: #ff7a93;
+}
+
+.field-hint {
+  margin-inline-start: auto;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  direction: ltr;
+}

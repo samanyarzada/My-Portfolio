@@ -1,6 +1,8 @@
 const en = {
   nav: {
     home: "Home",
+    projects: "Projects",
+    skills: "Skills",
     blog: "Blog",
     about: "About",
     contact: "Contact",
@@ -19,9 +21,10 @@ const en = {
     rights: "All rights reserved.",
     builtWith: "Built with React & React Router",
   },
-    home: {
+  home: {
     hello: "Hi, I'm",
     viewBlog: "Read Blog",
+    viewProjects: "View Projects",
     highlights: [
       {
         label: "Certificate",
@@ -41,20 +44,23 @@ const en = {
     ],
     featuredLabel: "Featured article",
     latestTitle: "Latest articles",
-    latestText: "Notes on React, CSS, JavaScript and the road of a student developer.",
+    latestText:
+      "Notes on React, CSS, JavaScript and the road of a student developer.",
     viewAll: "View all articles",
     ctaTitle: "Let's build something great together",
-    ctaText: "Have a project, a question or an idea? Send me an email and I will get back to you.",
+    ctaText:
+      "Have a project, a question or an idea? Send me an email and I will get back to you.",
   },
   post: {
     readMore: "Read article",
     minRead: "min read",
     featured: "Featured",
   },
-    blog: {
+  blog: {
     eyebrow: "Blog",
     title: "Articles & notes",
-    subtitle: "Writing about React, CSS, JavaScript and the road of a student developer.",
+    subtitle:
+      "Writing about React, CSS, JavaScript and the road of a student developer.",
     searchPlaceholder: "Search articles or tags...",
     searchLabel: "Search articles",
     clearSearch: "Clear search",
@@ -69,7 +75,7 @@ const en = {
     prev: "Previous page",
     next: "Next page",
   },
-    postDetail: {
+  postDetail: {
     back: "Back to blog",
     by: "By",
     copyLink: "Copy link",
@@ -82,20 +88,116 @@ const en = {
     notFoundText: "This article does not exist or its address has changed.",
     progress: "Reading progress",
   },
-    filterPage: {
+  filterPage: {
     categoryEyebrow: "Category",
     tagEyebrow: "Tag",
     allArticles: "All articles",
     emptyTitle: "Nothing here yet",
-    emptyText: "There are no articles for this one. Try another category or tag.",
+    emptyText:
+      "There are no articles for this one. Try another category or tag.",
     unknownCategory: "Category not found",
     otherCategories: "Other categories",
     popularTags: "All tags",
+  },
+  about: {
+    eyebrow: "About me",
+    title: "The person behind the code",
+    subtitle:
+      "A student developer from Herat who learns by building, and by teaching others.",
+    location: "Location",
+    studying: "Studying",
+    languages: "Languages",
+    journeyTitle: "My learning journey",
+    journeyText: "The steps that brought me here.",
+    goalsTitle: "My goals",
+    goalsText: "Where I want to go next.",
+    educationTitle: "Education & achievements",
+    experienceTitle: "Experience",
+    experienceText: "Teaching and real-world work.",
+    certificatesTitle: "Certificates",
+    certificatesText: "Courses I completed and can explain.",
+    viewCertificate: "View certificate",
+    ctaTitle: "Want to work together?",
+    ctaText:
+      "I am open to junior front-end work, freelance projects and learning opportunities.",
+  },
+  skills: {
+    eyebrow: "Skills",
+    title: "What I work with",
+    subtitle:
+      "Technologies I have actually used. The level next to each one is honest.",
+    levelLabel: "Level",
+    groups: {
+      frontend: "Front-end",
+      tools: "Tools",
+      languages: "Programming languages",
+    },
+    levels: {
+      learning: "Learning",
+      comfortable: "Comfortable",
+      confident: "Confident",
+    },
+    learningTitle: "Currently learning",
+    learningText: "Things I am still practising and improving.",
+    conceptsTitle: "React concepts I can explain",
+    conceptsText:
+      "Each of these is used in this portfolio, and I can show you where.",
+    ctaTitle: "See these skills in action",
+    ctaText:
+      "Send me a message if you want to talk about a project or an opportunity.",
+  },
+  contact: {
+    eyebrow: "Contact",
+    title: "Let's talk",
+    subtitle:
+      "Have a project, a question or an opportunity? Send me a message and I will reply as soon as I can.",
+    formTitle: "Send a message",
+    infoTitle: "Other ways to reach me",
+    location: "Location",
+    fields: {
+      name: "Your name",
+      email: "Your email",
+      subject: "Subject",
+      message: "Message",
+    },
+    placeholders: {
+      name: "Jane Doe",
+      email: "you@example.com",
+      subject: "What is this about?",
+      message: "Write your message here...",
+    },
+    required: "required",
+    send: "Send message",
+    sending: "Sending...",
+    errors: {
+      required: "This field is required.",
+      nameShort: "Please enter at least 2 characters.",
+      emailInvalid: "Please enter a valid email, like name@example.com.",
+      subjectShort: "The subject needs at least 3 characters.",
+      messageShort: "Your message needs at least 10 characters.",
+      messageLong: "Your message is too long. The limit is 1000 characters.",
+    },
+    successTitle: "Message sent",
+    successText:
+      "Thank you. Your message was delivered and I will reply by email.",
+    sendAnother: "Send another message",
+    errorTitle: "The message was not sent",
+    sendErrors: {
+      config: "The contact form is not set up yet, so nothing was sent.",
+      network:
+        "Could not reach the server. Please check your internet connection and try again.",
+      timeout: "The request took too long. Please try again in a moment.",
+      server:
+        "The server did not accept the message. Please try again, or use the email button.",
+    },
+    fallback: "You can also write to me directly:",
+    honeypot: "Do not fill this box",
   },
   notFound: {
     title: "Page not found",
     text: "The page you are looking for does not exist or was moved.",
     back: "Back to home",
+    blog: "Read the blog",
   },
 };
 
