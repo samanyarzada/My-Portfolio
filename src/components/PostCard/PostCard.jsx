@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import PostCover from "../PostCover/PostCover";
 import TagBadge from "../TagBadge/TagBadge";
-import { coverSymbols, getCategoryById } from "../../data/posts";
+import { getCategoryById } from "../../data/posts";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatDate, formatNumber } from "../../utils/format";
 import "./PostCard.css";
@@ -11,10 +12,9 @@ export default function PostCard({ post, featured = false }) {
 
   return (
     <article className={`post-card glass glass-hover ${featured ? "is-featured" : ""}`}>
-      <div className="post-cover" data-category={post.category} aria-hidden="true">
-        <span className="post-cover-symbol">{coverSymbols[post.category] ?? "</>"}</span>
+      <PostCover post={post}>
         {featured && <span className="post-flag">{t("post.featured")}</span>}
-      </div>
+      </PostCover>
 
       <div className="post-body">
         <div className="post-meta">

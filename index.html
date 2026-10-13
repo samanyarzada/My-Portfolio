@@ -10,7 +10,16 @@
       content="Saman Yarzada, Front-end Developer from Herat, Afghanistan. Blog, projects and more."
     />
     <title>Saman Yarzada | Front-end Developer</title>
-
+    <script>
+      (function () {
+        var theme = "dark";
+        try {
+          if (localStorage.getItem("saman-dev-theme") === "light")
+            theme = "light";
+        } catch (e) {}
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

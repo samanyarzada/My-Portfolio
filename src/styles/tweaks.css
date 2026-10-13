@@ -1,0 +1,109 @@
+/* =========================================================
+   1. No neon glow
+   ========================================================= */
+:root,
+html[data-theme="light"] {
+  --glow-blue: 0 0 0 0 transparent;
+  --glow-red: 0 0 0 0 transparent;
+}
+
+*,
+*::before,
+*::after {
+  text-shadow: none !important;
+}
+
+.brand-mark,
+.brand:hover .brand-mark,
+.lang-btn.active,
+.icon-btn:hover,
+.btn-ghost:hover,
+.post-flag,
+.page-btn.active,
+.category-chip.active,
+.detail-category:hover,
+.check-list li::before,
+.timeline-dot,
+.goal-bar,
+.meter-bar.on,
+.learning-dot,
+.result-icon.ok,
+.reading-progress-bar,
+.loader-ring,
+.author-avatar,
+.pulse-dot {
+  box-shadow: none !important;
+}
+
+.pulse-dot {
+  animation: none;
+}
+
+.photo-glow {
+  display: none;
+}
+
+.about-photo-frame {
+  box-shadow: var(--shadow-card) !important;
+}
+
+.empty-icon,
+.missing-icon,
+.notfound-code {
+  filter: none !important;
+}
+
+/* Buttons keep a plain, neutral shadow instead of a colored glow */
+.btn-primary,
+.btn-primary:hover,
+.btn-danger,
+.btn-danger:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* =========================================================
+   2. Gradient text: like the "View Projects" button + one more color
+   ========================================================= */
+:root {
+  --violet: #9d8cff;
+  --gradient-text: linear-gradient(120deg, var(--neon-blue) 0%, var(--teal) 50%, var(--violet) 100%);
+}
+
+html[data-theme="light"] {
+  --violet: #6a45e8;
+}
+
+.gradient-text {
+  background-image: var(--gradient-text);
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* =========================================================
+   3. SY logo
+   ========================================================= */
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #04122a;
+  background: var(--gradient-text);
+  border: 0;
+  border-radius: 11px;
+  direction: ltr;
+}
+
+html[data-theme="light"] .brand-mark {
+  color: #ffffff;
+}
+
+/* =========================================================
+   4. Skill meter fix (light theme)
+   ========================================================= */
+html[data-theme="light"] .meter-bar.on {
+  background: var(--gradient-cool);
+}

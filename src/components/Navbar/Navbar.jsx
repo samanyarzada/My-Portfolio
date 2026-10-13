@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import Brand from "../Brand/Brand";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 import { CloseIcon, MenuIcon } from "../Icons";
@@ -49,7 +50,9 @@ export default function Navbar() {
                 <NavLink
                   to={to}
                   end={end}
-                  className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
                   onClick={close}
                 >
                   {t(key)}
@@ -60,6 +63,7 @@ export default function Navbar() {
         </nav>
 
         <div className="navbar-actions">
+          <ThemeToggle />
           <LanguageSwitcher />
           <button
             type="button"

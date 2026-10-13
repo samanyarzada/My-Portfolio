@@ -5,10 +5,11 @@ import PostCard from "../../components/PostCard/PostCard";
 import ReadingProgress from "../../components/ReadingProgress/ReadingProgress";
 import TagBadge from "../../components/TagBadge/TagBadge";
 import { CheckIcon, LinkIcon, SearchIcon } from "../../components/Icons";
-import { coverSymbols, getCategoryById, getPostBySlug, posts } from "../../data/posts";
+import { getCategoryById, getPostBySlug, posts } from "../../data/posts";
 import { profile } from "../../data/profile";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatDate, formatNumber } from "../../utils/format";
+import PostCover from "../../components/PostCover/PostCover";
 import "./PostDetail.css";
 
 // Newest first
@@ -122,10 +123,8 @@ export default function PostDetail() {
         </header>
 
         {/* ---------- Cover ---------- */}
-        <div className="container detail-cover-wrap fade-up delay-3">
-          <div className="post-cover detail-cover" data-category={post.category} aria-hidden="true">
-            <span className="post-cover-symbol">{coverSymbols[post.category] ?? "</>"}</span>
-          </div>
+          <div className="container detail-cover-wrap fade-up delay-3">
+          <PostCover post={post} alt={l(post.title)} className="detail-cover" />
         </div>
 
         {/* ---------- Body ---------- */}

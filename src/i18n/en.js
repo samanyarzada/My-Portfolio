@@ -210,6 +210,10 @@ const en = {
     loader: {
     loading: "Loading...",
   },
+    theme: {
+    toLight: "Switch to light theme",
+    toDark: "Switch to dark theme",
+  },
   notFound: {
     title: "Page not found",
     text: "The page you are looking for does not exist or was moved.",
