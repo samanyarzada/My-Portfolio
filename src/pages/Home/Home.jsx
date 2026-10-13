@@ -6,7 +6,7 @@ import PostCard from "../../components/PostCard/PostCard";
 import { posts } from "../../data/posts";
 import { profile } from "../../data/profile";
 import { useTranslation } from "../../hooks/useTranslation";
-import profileImg from "../../assets/images/profile.png";
+import { useProfileImage } from "../../hooks/useProfileImage";
 import "./Home.css";
 
 // Newest first
@@ -19,6 +19,7 @@ const floatingSkills = ["React", "JavaScript", "CSS"];
 export default function Home() {
   const { t, l } = useTranslation();
   const [imgFailed, setImgFailed] = useState(false);
+  const profileImg = useProfileImage();
 
   return (
     <>

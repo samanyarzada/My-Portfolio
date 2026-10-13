@@ -2,13 +2,13 @@ import { useState } from "react";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import { profile } from "../../data/profile";
 import { useTranslation } from "../../hooks/useTranslation";
-import profileImg from "../../assets/images/profile.png";
+import { useProfileImage } from "../../hooks/useProfileImage";
 import "./AuthorBox.css";
 
 export default function AuthorBox() {
   const { t, l } = useTranslation();
   const [imgFailed, setImgFailed] = useState(false);
-
+const profileImg = useProfileImage();
   return (
     <aside className="author-box glass">
       <div className="author-avatar">

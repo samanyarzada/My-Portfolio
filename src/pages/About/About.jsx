@@ -3,7 +3,7 @@ import EmailButton from "../../components/EmailButton/EmailButton";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import { profile } from "../../data/profile";
 import { useTranslation } from "../../hooks/useTranslation";
-import profileImg from "../../assets/images/profile.png";
+import { useProfileImage } from "../../hooks/useProfileImage";
 import Journey from "./sections/Journey";
 import Goals from "./sections/Goals";
 import Education from "./sections/Education";
@@ -14,6 +14,7 @@ import "./About.css";
 export default function About() {
   const { t, l } = useTranslation();
   const [imgFailed, setImgFailed] = useState(false);
+  const profileImg = useProfileImage();
 
   useEffect(() => {
     const previous = document.title;

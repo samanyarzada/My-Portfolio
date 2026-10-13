@@ -107,3 +107,22 @@ html[data-theme="light"] .brand-mark {
 html[data-theme="light"] .meter-bar.on {
   background: var(--gradient-cool);
 }
+/* =========================================================
+   5. Light theme: borders use the "View Projects" button colors
+   ========================================================= */
+html[data-theme="light"] {
+  --gradient-neon: linear-gradient(135deg, var(--neon-blue) 0%, var(--teal) 50%, var(--violet) 100%);
+}
+
+/* Footer line on top, and the timeline line, use the same colors */
+html[data-theme="light"] .footer::before {
+  background: linear-gradient(90deg, transparent, var(--violet), var(--neon-blue), var(--teal), transparent);
+}
+
+html[data-theme="light"] .timeline::before {
+  background: linear-gradient(180deg, var(--neon-blue), var(--teal), var(--violet));
+}
+html[data-theme="light"] {
+  --border-soft: rgba(0, 102, 179, 0.18);
+  --border-medium: rgba(0, 102, 179, 0.3);
+}

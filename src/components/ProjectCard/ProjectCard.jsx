@@ -1,18 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 import { ExternalIcon, GithubIcon } from "../Icons";
+import { useTheme } from "../../hooks/useTheme";
 import { useTranslation } from "../../hooks/useTranslation";
+import { lightSrc } from "../../utils/themedImage";
 import "./ProjectCard.css";
 
 export default function ProjectCard({ project }) {
   const { t, l } = useTranslation();
+  const { isLight } = useTheme();
   const imgRef = useRef(null);
   const [imgState, setImgState] = useState("loading"); // loading | loaded | error
+  const [lightFailed, setLightFailed] = useState(false);
+
+  // Light theme uses the "-light" image, with the dark one as a fallback
+  const src = isLight && !lightFailed ? lightSrc(project.image) : project.image;
 
   // A cached image can finish loading before React attaches onLoad
   useEffect(() => {
     const img = imgRef.current;
     if (img?.complete && img.naturalWidth > 0) setImgState("loaded");
   }, []);
+
+  const handleError = () => {
+    if (isLight && !lightFailed) setLightFailed(true);
+    else setImgState("error");
+  };
 
   const title = l(project.title);
 
@@ -31,14 +43,14 @@ export default function ProjectCard({ project }) {
         ) : (
           <img
             ref={imgRef}
-            src={project.image}
+            src={src}
             alt={l(project.alt)}
             width="1280"
             height="720"
             loading="lazy"
             decoding="async"
             onLoad={() => setImgState("loaded")}
-            onError={() => setImgState("error")}
+            onError={handleError}
           />
         )}
       </div>

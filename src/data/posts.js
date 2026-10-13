@@ -1,4 +1,3 @@
-
 export const categories = [
   { id: "react", name: { en: "React", fa: "ری‌اکت" } },
   { id: "css", name: { en: "CSS", fa: "سی‌اس‌اس" } },
@@ -14,8 +13,7 @@ export const coverSymbols = {
   career: "→",
 };
 
-
-  // ... مقاله‌ها بدون تغییر
+// ... مقاله‌ها بدون تغییر
 export const posts = [
   {
     id: 1,
@@ -25,6 +23,7 @@ export const posts = [
     date: "2026-09-28",
     readTime: 6,
     featured: true,
+    image: "/images/posts/react-router-introduction.webp",
     title: {
       en: "React Router Introduction: Routing Without the Confusion",
       fa: "مقدمه‌ای بر React Router: مسیریابی بدون سردرگمی",
@@ -56,6 +55,7 @@ export const posts = [
     date: "2026-09-15",
     readTime: 5,
     featured: false,
+    image: "/images/posts/css-glassmorphism.webp",
     title: {
       en: "Glassmorphism in CSS: Build Frosted Glass Cards",
       fa: "گلس‌مورفیسم در CSS: ساخت کارت‌های شیشه‌ای مات",
@@ -85,6 +85,7 @@ export const posts = [
     date: "2026-08-30",
     readTime: 7,
     featured: false,
+    image: "/images/posts/javascript.webp",
     title: {
       en: "JavaScript Array Methods You Will Use Every Day",
       fa: "متدهای آرایه در جاوااسکریپت که هر روز استفاده می‌کنی",
@@ -114,6 +115,7 @@ export const posts = [
     date: "2026-08-12",
     readTime: 4,
     featured: false,
+    image: "/images/posts/front-end-journey.webp",
     title: {
       en: "My Front-End Learning Path as a Student",
       fa: "مسیر یادگیری فرانت‌اند من به‌عنوان یک محصل",
@@ -143,6 +145,7 @@ export const posts = [
     date: "2026-07-25",
     readTime: 5,
     featured: false,
+    image: "/images/posts/tailwind.webp",
     title: {
       en: "Tailwind CSS vs Plain CSS: Which Should You Pick?",
       fa: "Tailwind CSS یا CSS ساده: کدام را انتخاب کنیم؟",
@@ -172,6 +175,7 @@ export const posts = [
     date: "2026-07-05",
     readTime: 6,
     featured: false,
+    image: "/images/posts/react-state.webp",
     title: {
       en: "React State and Props: The Mental Model",
       fa: "State و Props در React: مدل ذهنی درست",
@@ -201,6 +205,7 @@ export const posts = [
     date: "2026-06-18",
     readTime: 5,
     featured: false,
+    image: "/images/posts/responsive.webp",
     title: {
       en: "A Practical Responsive Design Checklist",
       fa: "چک‌لیست کاربردی طراحی ریسپانسیو",
@@ -230,6 +235,7 @@ export const posts = [
     date: "2026-06-02",
     readTime: 4,
     featured: false,
+    image: "/images/posts/teach-yourself.webp",
     title: {
       en: "How to Teach Yourself to Code and Stay Consistent",
       fa: "چگونه برنامه‌نویسی را خودآموز یاد بگیریم و منظم بمانیم",
