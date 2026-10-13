@@ -32,7 +32,9 @@ export default function PostDetail() {
   const { slug } = useParams();
   const { t, l, lang } = useTranslation();
   const articleRef = useRef(null);
-  const [copied, setCopied] = useState(false);
+   // Stores the slug that was copied, so it resets by itself when the article changes
+  const [copiedSlug, setCopiedSlug] = useState(null);
+  const copied = copiedSlug === slug;
 
   const post = getPostBySlug(slug);
 
@@ -47,10 +49,7 @@ export default function PostDetail() {
     };
   }, [post, l, t]);
 
-  // Reset "copied" when the user moves to another article
-  useEffect(() => {
-    setCopied(false);
-  }, [slug]);
+
 
   const related = useMemo(() => (post ? getRelated(post) : []), [post]);
 
@@ -60,11 +59,11 @@ export default function PostDetail() {
     return { newer: sorted[i - 1], older: sorted[i + 1] };
   }, [post]);
 
-  const copyLink = async () => {
+   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setCopiedSlug(slug);
+      setTimeout(() => setCopiedSlug(null), 2000);
     } catch {
       // Clipboard can be blocked (for example on non-HTTPS pages), so we do nothing
     }

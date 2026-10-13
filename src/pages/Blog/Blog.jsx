@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import PostCard from "../../components/PostCard/PostCard";
 import CategoryList from "../../components/CategoryList/CategoryList";
@@ -27,15 +27,10 @@ export default function Blog() {
   // ----- Read state from the URL -----
   const urlQuery = searchParams.get("q") ?? "";
   const rawCategory = searchParams.get("category");
-  const category = categories.some((c) => c.id === rawCategory) ? rawCategory : "all";
+  const category = categories.some((c) => c.id === rawCategory)
+    ? rawCategory
+    : "all";
   const pageParam = parseInt(searchParams.get("page") ?? "1", 10) || 1;
-
-  // The input keeps its own state (smooth typing, Persian IME),
-  // and follows the URL when the user presses the browser back button.
-  const [query, setQuery] = useState(urlQuery);
-  useEffect(() => {
-    setQuery(urlQuery);
-  }, [urlQuery]);
 
   // ----- Write state to the URL -----
   const updateParams = (changes, { replace = false } = {}) => {
@@ -56,7 +51,6 @@ export default function Blog() {
   };
 
   const handleSearch = (value) => {
-    setQuery(value);
     // replace: typing should not fill the browser history
     updateParams({ q: value, page: 1 }, { replace: true });
   };
@@ -69,7 +63,6 @@ export default function Blog() {
   };
 
   const clearAll = () => {
-    setQuery("");
     setSearchParams({});
   };
 
@@ -99,7 +92,7 @@ export default function Blog() {
   const { pageItems, currentPage, totalPages, total } = usePagination(
     filtered,
     pageParam,
-    PER_PAGE
+    PER_PAGE,
   );
 
   return (
@@ -107,13 +100,19 @@ export default function Blog() {
       {/* ---------- Header ---------- */}
       <section className="container blog-head">
         <span className="eyebrow fade-up">{t("blog.eyebrow")}</span>
-        <h1 className="section-title gradient-text fade-up delay-1">{t("blog.title")}</h1>
+        <h1 className="section-title gradient-text fade-up delay-1">
+          {t("blog.title")}
+        </h1>
         <p className="section-subtitle fade-up delay-2">{t("blog.subtitle")}</p>
       </section>
 
       {/* ---------- Search + filter ---------- */}
       <section className="container blog-toolbar fade-up delay-2">
-        <form className="search-field" role="search" onSubmit={(e) => e.preventDefault()}>
+        <form
+          className="search-field"
+          role="search"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <SearchIcon className="search-icon" />
           <input
             className="input search-input"
@@ -121,12 +120,12 @@ export default function Blog() {
             dir="auto"
             inputMode="search"
             autoComplete="off"
-            value={query}
+            value={urlQuery}
             onChange={(e) => handleSearch(e.target.value)}
             placeholder={t("blog.searchPlaceholder")}
             aria-label={t("blog.searchLabel")}
           />
-          {query && (
+          {urlQuery && (
             <button
               type="button"
               className="search-clear"
@@ -157,7 +156,11 @@ export default function Blog() {
           <>
             <div className="blog-grid">
               {pageItems.map((post, i) => (
-                <div key={post.id} className="fade-up" style={{ animationDelay: `${0.07 * i}s` }}>
+                <div
+                  key={post.id}
+                  className="fade-up"
+                  style={{ animationDelay: `${0.07 * i}s` }}
+                >
                   <PostCard post={post} />
                 </div>
               ))}

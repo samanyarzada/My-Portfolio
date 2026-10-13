@@ -1,7 +1,6 @@
-import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { DEFAULT_LANG, SUPPORTED_LANGS } from "../i18n";
-
-export const LanguageContext = createContext(null);
+import { LanguageContext } from "./languageContext";
 
 const STORAGE_KEY = "saman-dev-lang";
 

@@ -1,5 +1,5 @@
 import { useCallback, useContext } from "react";
-import { LanguageContext } from "../context/LanguageContext";
+import { LanguageContext } from "../context/languageContext";
 import { translations } from "../i18n";
 
 const resolve = (obj, key) => key.split(".").reduce((o, k) => o?.[k], obj);
