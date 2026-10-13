@@ -7,6 +7,7 @@ const en = {
     about: "About",
     contact: "Contact",
     menu: "Menu",
+        skip: "Skip to main content",
   },
   language: {
     label: "Language",
@@ -192,6 +193,22 @@ const en = {
     },
     fallback: "You can also write to me directly:",
     honeypot: "Do not fill this box",
+  },
+    projects: {
+    eyebrow: "Projects",
+    title: "Things I have built",
+    subtitle: "Real projects from my React course. Each one is live, and the code is open on GitHub.",
+    count: "projects",
+    liveDemo: "Live demo",
+    sourceCode: "Source code",
+    features: "Main features",
+    imageLoading: "Loading screenshot",
+    imageError: "Screenshot could not be loaded",
+    ctaTitle: "Like what you see?",
+    ctaText: "I am looking for junior front-end opportunities. Let's talk.",
+  },
+    loader: {
+    loading: "Loading...",
   },
   notFound: {
     title: "Page not found",

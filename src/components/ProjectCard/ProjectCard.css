@@ -1,0 +1,147 @@
+.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ---------- Screenshot ---------- */
+.project-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease), transform 0.6s var(--ease);
+}
+
+.project-media[data-state="loaded"] img {
+  opacity: 1;
+}
+
+.project-card:hover .project-media[data-state="loaded"] img {
+  transform: scale(1.03);
+}
+
+.project-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.04) 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.04) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.project-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  background:
+    radial-gradient(70% 90% at 0% 0%, rgba(91, 26, 140, 0.4), transparent 70%),
+    radial-gradient(70% 90% at 100% 100%, rgba(0, 184, 255, 0.25), transparent 70%),
+    var(--bg-elevated);
+}
+
+.project-fallback-letter {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--neon-blue);
+  text-shadow: var(--glow-blue);
+}
+
+/* ---------- Body ---------- */
+.project-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--space-4);
+  padding: var(--space-5);
+}
+
+.project-title {
+  font-size: var(--fs-xl);
+  direction: ltr;
+  text-align: start;
+}
+
+.project-summary {
+  font-size: var(--fs-sm);
+}
+
+.project-subtitle {
+  margin-block-end: var(--space-2);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--neon-red);
+}
+
+html[lang="fa"] .project-subtitle {
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: var(--fs-sm);
+}
+
+.project-features {
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  direction: ltr;
+}
+
+.project-tech li {
+  padding: 0.2rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  background: rgba(0, 184, 255, 0.07);
+  border: 1px solid rgba(0, 184, 255, 0.2);
+  border-radius: var(--radius-pill);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: auto;
+  padding-block-start: var(--space-2);
+}
+
+.btn-icon {
+  width: 17px;
+  height: 17px;
+}

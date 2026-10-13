@@ -581,3 +581,72 @@ html[dir="rtl"] .arrow {
     padding-block: var(--space-7);
   }
 }
+
+/* =========================================================
+   Shared helpers (used by more than one page)
+   ========================================================= */
+.check-list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.check-list li {
+  position: relative;
+  padding-inline-start: 1.7rem;
+  color: var(--text-secondary);
+}
+
+.check-list li::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0.6em;
+  inset-inline-start: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--neon-blue);
+  box-shadow: 0 0 12px rgba(0, 184, 255, 0.8);
+}
+
+.empty-icon {
+  width: 46px;
+  height: 46px;
+  color: var(--neon-blue);
+  filter: drop-shadow(0 0 14px rgba(0, 184, 255, 0.6));
+}
+
+.back-arrow {
+  transform: scaleX(-1);
+}
+html[dir="rtl"] .back-arrow {
+  transform: none;
+}
+
+/* =========================================================
+   Skip link (keyboard users jump straight to the content)
+   ========================================================= */
+.skip-link {
+  position: fixed;
+  inset-block-start: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 999;
+  padding: 0.7rem 1.2rem;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: #fff;
+  background: var(--bg-elevated);
+  border: 1px solid var(--neon-blue);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--glow-blue);
+  transform: translateY(-200%);
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* The main area receives focus from the skip link, no outline needed */
+main:focus {
+  outline: none;
+}

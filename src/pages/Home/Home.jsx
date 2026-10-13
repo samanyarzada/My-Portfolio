@@ -61,6 +61,8 @@ export default function Home() {
                   alt={l(profile.name)}
                   width="420"
                   height="420"
+                  fetchPriority="high"
+                  decoding="async"
                   onError={() => setImgFailed(true)}
                 />
               )}
