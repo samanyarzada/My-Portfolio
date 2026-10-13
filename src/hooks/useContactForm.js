@@ -2,7 +2,7 @@ import { useCallback, useRef, useState } from "react";
 import { FIELDS, validateAll, validateField } from "../utils/validators";
 
 const ENDPOINT = "https://api.web3forms.com/submit";
-const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+const ACCESS_KEY = import.meta.env.WEB3FORMS_KEY;
 const TIMEOUT_MS = 15000;
 
 const initialValues = { name: "", email: "", subject: "", message: "" };
