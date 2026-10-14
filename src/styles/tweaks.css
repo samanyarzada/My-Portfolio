@@ -126,3 +126,75 @@ html[data-theme="light"] {
   --border-soft: rgba(0, 102, 179, 0.18);
   --border-medium: rgba(0, 102, 179, 0.3);
 }
+/* =========================================================
+   6. Mobile fix: no horizontal scroll
+   ========================================================= */
+
+/* Safety net: nothing can create a sideways scroll */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.navbar-inner > * {
+  min-width: 0;
+}
+
+.brand {
+  flex-shrink: 0;
+}
+
+@media (max-width: 520px) {
+  .navbar-inner {
+    gap: var(--space-2);
+  }
+
+  .navbar-actions {
+    gap: 0.4rem;
+  }
+
+  .navbar-actions .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navbar-actions .icon-btn svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .lang-btn {
+    padding: 0.25rem 0.6rem;
+  }
+
+  .brand {
+    gap: 0.45rem;
+  }
+
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+  }
+
+  /* Hero chips stay inside the screen */
+  .chip-1 {
+    inset-inline-start: 0;
+  }
+
+  .chip-2 {
+    inset-inline-end: 0;
+  }
+}
+
+/* Very small phones: the logo mark is enough */
+@media (max-width: 380px) {
+  .brand-name {
+    display: none;
+  }
+}
