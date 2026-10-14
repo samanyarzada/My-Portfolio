@@ -198,3 +198,15 @@ body {
     display: none;
   }
 }
+/* =========================================================
+   7. Hamburger button: only on small screens
+   ========================================================= */
+.navbar-actions .menu-toggle {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .navbar-actions .menu-toggle {
+    display: inline-grid;
+  }
+}
