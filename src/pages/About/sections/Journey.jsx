@@ -1,10 +1,11 @@
 import SectionHeader from "../../../components/SectionHeader/SectionHeader";
-import { profile } from "../../../data/profile";
+import { useProfile } from "../../../hooks/useProfile";
 import { useTranslation } from "../../../hooks/useTranslation";
 import { formatNumber } from "../../../utils/format";
 
 export default function Journey() {
   const { t, l, lang } = useTranslation();
+  const profile = useProfile();
 
   return (
     <section className="container about-section">

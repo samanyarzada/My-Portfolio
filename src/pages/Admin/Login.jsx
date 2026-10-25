@@ -3,13 +3,14 @@ import { Link, Navigate, useLocation } from "react-router-dom";
 import LanguageSwitcher from "../../components/LanguageSwitcher/LanguageSwitcher";
 import ThemeToggle from "../../components/ThemeToggle/ThemeToggle";
 import Loader from "../../components/Loader/Loader";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useAuth } from "../../hooks/useAuth";
 import { useNoIndex } from "../../hooks/useNoIndex";
 import { useTranslation } from "../../hooks/useTranslation";
 
 export default function Login() {
   useNoIndex();
+  const profile = useProfile();
   const { t } = useTranslation();
   const { status, session, signIn } = useAuth();
   const location = useLocation();

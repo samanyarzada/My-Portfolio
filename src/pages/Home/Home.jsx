@@ -4,7 +4,7 @@ import EmailButton from "../../components/EmailButton/EmailButton";
 import Loader from "../../components/Loader/Loader";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import PostCard from "../../components/PostCard/PostCard";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useContent } from "../../hooks/useContent";
 import { useProfileImage } from "../../hooks/useProfileImage";
 import { useTranslation } from "../../hooks/useTranslation";
@@ -15,6 +15,7 @@ const floatingSkills = ["React", "JavaScript", "CSS"];
 export default function Home() {
   const { t, l } = useTranslation();
   const { loading, sortedPosts } = useContent();
+  const profile = useProfile();
   const profileImg = useProfileImage();
   const [imgFailed, setImgFailed] = useState(false);
 

@@ -7,7 +7,8 @@ const en = {
     about: "About",
     contact: "Contact",
     menu: "Menu",
-        skip: "Skip to main content",
+    admin: "Admin",
+    skip: "Skip to main content",
   },
   language: {
     label: "Language",
@@ -194,10 +195,11 @@ const en = {
     fallback: "You can also write to me directly:",
     honeypot: "Do not fill this box",
   },
-    projects: {
+  projects: {
     eyebrow: "Projects",
     title: "Things I have built",
-    subtitle: "Real projects from my React course. Each one is live, and the code is open on GitHub.",
+    subtitle:
+      "Real projects from my React course. Each one is live, and the code is open on GitHub.",
     count: "projects",
     liveDemo: "Live demo",
     sourceCode: "Source code",
@@ -206,26 +208,29 @@ const en = {
     imageError: "Screenshot could not be loaded",
     ctaTitle: "Like what you see?",
     ctaText: "I am looking for junior front-end opportunities. Let's talk.",
-        empty: "No projects yet.",
+    empty: "No projects yet.",
   },
-    loader: {
+  loader: {
     loading: "Loading...",
   },
-    theme: {
+  theme: {
     toLight: "Switch to light theme",
     toDark: "Switch to dark theme",
   },
-    admin: {
+  admin: {
     panel: "Admin panel",
     soon: "soon",
     viewSite: "View site",
     signOut: "Sign out",
     retry: "Try again",
-    loadError: "The figures could not be loaded. Check your connection and try again.",
+    loadError:
+      "The figures could not be loaded. Check your connection and try again.",
     disabledTitle: "Admin panel is not available",
-    disabledText: "The database is not configured on this site, so the panel cannot work.",
+    disabledText:
+      "The database is not configured on this site, so the panel cannot work.",
     noAccessTitle: "No access",
-    noAccessText: "This account is signed in, but it is not allowed to manage this site.",
+    noAccessText:
+      "This account is signed in, but it is not allowed to manage this site.",
     loginTitle: "Admin sign-in",
     loginText: "Sign in to manage projects, articles and your profile.",
     email: "Email",
@@ -235,7 +240,8 @@ const en = {
     errors: {
       empty: "Enter your email and password.",
       invalid: "The email or password is incorrect.",
-      network: "Could not reach the server. Check your connection and try again.",
+      network:
+        "Could not reach the server. Check your connection and try again.",
     },
     nav: {
       dashboard: "Dashboard",
@@ -245,7 +251,8 @@ const en = {
       profile: "Profile",
     },
     dashboardTitle: "Dashboard",
-    dashboardText: "A quick look at your content. Everything on the site is managed from here.",
+    dashboardText:
+      "A quick look at your content. Everything on the site is managed from here.",
     stats: {
       projects: "Projects",
       posts: "Articles",
@@ -253,7 +260,7 @@ const en = {
       hidden: "hidden",
       drafts: "drafts",
     },
-        common: {
+    common: {
       save: "Save",
       saving: "Saving...",
       cancel: "Cancel",
@@ -264,9 +271,11 @@ const en = {
       close: "Close",
       moveUp: "Move up",
       moveDown: "Move down",
-      loadError: "The data could not be loaded. Check your connection and try again.",
+      loadError:
+        "The data could not be loaded. Check your connection and try again.",
       saveError: "It could not be saved. Check your connection and try again.",
-      noPermission: "The change was not saved. Your account may not have permission, or you were signed out.",
+      noPermission:
+        "The change was not saved. Your account may not have permission, or you were signed out.",
     },
     projects: {
       title: "Projects",
@@ -289,7 +298,8 @@ const en = {
       notFound: "This project was not found.",
       general: "General",
       slug: "Address (slug)",
-      slugHint: "Lowercase English letters, numbers and dashes. It is also the project ID.",
+      slugHint:
+        "Lowercase English letters, numbers and dashes. It is also the project ID.",
       tech: "Technologies",
       techHint: "Separate them with commas, for example: React, Vite, CSS",
       liveUrl: "Live demo link",
@@ -305,30 +315,36 @@ const en = {
       alt: "Screenshot description (alt text)",
       altHint: "Describes the image for screen readers.",
       images: "Screenshots",
-      imagesHint: "Use a 16:9 image. It is converted to WebP and resized automatically (max 500 KB).",
+      imagesHint:
+        "Use a 16:9 image. It is converted to WebP and resized automatically (max 500 KB).",
       darkImage: "Dark theme screenshot",
       lightImage: "Light theme screenshot",
       noImage: "No image",
       newImage: "New image",
       converting: "Preparing the image...",
       clearSelection: "Clear the selection",
-      noLightHint: "Without a light screenshot, the dark one is shown in the light theme.",
+      noLightHint:
+        "Without a light screenshot, the dark one is shown in the light theme.",
       removeImage: "Remove the current screenshots",
       errors: {
         required: "This field is required.",
-        slugInvalid: "Use only lowercase English letters, numbers and dashes (like my-project).",
+        slugInvalid:
+          "Use only lowercase English letters, numbers and dashes (like my-project).",
         slugTaken: "This address is already used by another project.",
         urlInvalid: "The link must start with http:// or https://.",
-        lightNeedsDark: "The light image is uploaded together with a dark one. Choose both.",
+        lightNeedsDark:
+          "The light image is uploaded together with a dark one. Choose both.",
         imageType: "Only PNG, JPG or WebP files are allowed.",
         imageTooBig: "The file is too big (max 15 MB).",
-        imageTooHeavy: "Even after compression the image is over 500 KB. Choose a smaller or simpler image.",
+        imageTooHeavy:
+          "Even after compression the image is over 500 KB. Choose a smaller or simpler image.",
         imageDecode: "This image could not be read. Try another file.",
-        imageUnsupported: "Your browser cannot convert to WebP. Use Chrome, Edge or Firefox.",
+        imageUnsupported:
+          "Your browser cannot convert to WebP. Use Chrome, Edge or Firefox.",
         uploadFailed: "The image upload failed. Nothing was saved.",
       },
     },
-        posts: {
+    posts: {
       title: "Articles",
       lead: "Write, edit, publish and organize the articles of the blog.",
       add: "New article",
@@ -358,7 +374,8 @@ const en = {
       noCategories: "There are no categories yet. An article needs a category.",
       general: "General",
       slug: "Address (slug)",
-      slugHint: "Lowercase English letters, numbers and dashes. It is the article link: /blog/your-address",
+      slugHint:
+        "Lowercase English letters, numbers and dashes. It is the article link: /blog/your-address",
       category: "Category",
       status: "Status",
       statusDraft: "Draft (hidden from the site)",
@@ -368,9 +385,11 @@ const en = {
       estimate: "Estimated from the text",
       useEstimate: "Use the estimate",
       tags: "Tags",
-      tagsHint: "Separate them with commas. They are saved in lowercase, spaces become dashes.",
+      tagsHint:
+        "Separate them with commas. They are saved in lowercase, spaces become dashes.",
       featuredSwitch: "Featured article",
-      featuredHint: "The home page shows the newest featured article in the large card.",
+      featuredHint:
+        "The home page shows the newest featured article in the large card.",
       english: "English",
       persian: "Persian",
       persianHint: "Optional. If a field is empty, the English text is shown.",
@@ -379,9 +398,11 @@ const en = {
       excerptHint: "Shown on cards and under the title.",
       content: "Article text",
       contentLang: "Language of the text",
-      contentHint: "Write in Markdown. The preview shows the article as readers will see it.",
+      contentHint:
+        "Write in Markdown. The preview shows the article as readers will see it.",
       images: "Cover images",
-      imagesHint: "Use a wide 2:1 image. It is converted to WebP and resized automatically (max 500 KB).",
+      imagesHint:
+        "Use a wide 2:1 image. It is converted to WebP and resized automatically (max 500 KB).",
       removeImage: "Remove the current cover images",
       unsaved: "Unsaved changes",
       cheat: { title: "Markdown quick guide" },
@@ -410,13 +431,108 @@ const en = {
       },
       errors: {
         required: "This field is required.",
-        slugInvalid: "Use only lowercase English letters, numbers and dashes (like my-article).",
+        slugInvalid:
+          "Use only lowercase English letters, numbers and dashes (like my-article).",
         slugTaken: "This address is already used by another article.",
         categoryMissing: "This category does not exist. Choose another one.",
         dateInvalid: "Choose a valid date.",
         readTimeInvalid: "Enter a whole number between 1 and 240.",
-        needForPublish: "A published article needs a summary and text in English. Add them, or save it as a draft.",
-        lightNeedsDark: "The light image is uploaded together with a dark one. Choose both.",
+        needForPublish:
+          "A published article needs a summary and text in English. Add them, or save it as a draft.",
+        lightNeedsDark:
+          "The light image is uploaded together with a dark one. Choose both.",
+      },
+    },
+        categories: {
+      title: "Categories",
+      lead: "Add, edit and reorder the categories used by the articles.",
+      add: "Add category",
+      empty: "There are no categories yet.",
+      newTitle: "New category",
+      editTitle: "Edit category",
+      id: "Address (id)",
+      idHint: "Lowercase English letters, numbers and dashes. It cannot be changed after saving.",
+      nameEn: "English name",
+      nameFa: "Persian name",
+      nameFaHint: "Optional. If empty, the English name is shown.",
+      symbol: "Cover symbol",
+      symbolHint: "Short text shown on the article cover, like <App /> or JS.",
+      deleteTitle: "Delete this category?",
+      deleteText: "This cannot be undone.",
+      deleted: "The category was deleted.",
+      created: "The category was created.",
+      updated: "The category was updated.",
+      inUse: "This category still has articles. Move or delete them first.",
+      errors: {
+        required: "This field is required.",
+        idInvalid: "Use only lowercase English letters, numbers and dashes (like my-category).",
+        idTaken: "This address is already used by another category.",
+      },
+    },
+        profile: {
+      title: "Profile",
+      lead: "Edit the texts shown on the Home, About and Skills pages and in the footer.",
+      saved: "The profile was saved.",
+      unsaved: "Unsaved changes",
+      english: "English",
+      persian: "Persian",
+      persianHint: "Optional. If a field is empty, the English text is shown.",
+      add: "Add",
+      remove: "Remove",
+      moveUp: "Move up",
+      moveDown: "Move down",
+      sections: {
+        general: "General",
+        about: "About",
+        links: "Links and contact",
+        skills: "Skills",
+        journey: "Learning journey",
+        goals: "Goals",
+        experience: "Experience",
+        certificates: "Certificates",
+      },
+      fields: {
+        brand: "Brand name",
+        brandHint: "Written like Saman.dev. The part after the dot is highlighted.",
+        name: "Full name",
+        title: "Job title",
+        tagline: "Tagline",
+        location: "Location",
+        bio: "Short biography",
+        education: "Education",
+        achievements: "Achievements",
+        achievementsHint: "One achievement per line.",
+        languages: "Languages",
+        languagesHint: "One language per line.",
+        emailUser: "Email (before the @)",
+        emailDomain: "Email domain",
+        github: "GitHub link",
+        linkedin: "LinkedIn link",
+        telegram: "Telegram link",
+        skillName: "Skill name",
+        skillGroup: "Group",
+        skillLevel: "Level",
+        skillDescription: "Description",
+        itemTitle: "Title",
+        itemText: "Text",
+        role: "Role",
+        certTitle: "Certificate title",
+        certIssuer: "Issuer",
+        certUrl: "Certificate link",
+      },
+      groups: {
+        frontend: "Front-end",
+        tools: "Tools",
+        languages: "Programming languages",
+      },
+      levels: {
+        learning: "Learning",
+        comfortable: "Comfortable",
+        confident: "Confident",
+      },
+      errors: {
+        required: "This field is required.",
+        urlInvalid: "The link must start with http:// or https://.",
       },
     },
   },

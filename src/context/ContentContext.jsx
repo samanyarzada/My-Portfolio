@@ -9,7 +9,15 @@ function initialState() {
   if (!supabaseConfigured) {
     return { status: "ready", source: "fallback", error: null, ...fallbackContent };
   }
-  return { status: "loading", source: null, error: null, categories: [], projects: [], posts: [] };
+  return {
+    status: "loading",
+    source: null,
+    error: null,
+    categories: [],
+    projects: [],
+    posts: [],
+    profile: fallbackContent.profile,
+  };
 }
 
 export function ContentProvider({ children }) {

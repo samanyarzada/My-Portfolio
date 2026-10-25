@@ -12,8 +12,8 @@ const links = [
   { to: "/admin", key: "admin.nav.dashboard", end: true, ready: true },
   { to: "/admin/projects", key: "admin.nav.projects", ready: true },
   { to: "/admin/posts", key: "admin.nav.posts", ready: true },
-  { to: "/admin/categories", key: "admin.nav.categories", ready: false },
-  { to: "/admin/profile", key: "admin.nav.profile", ready: false },
+  { to: "/admin/categories", key: "admin.nav.categories", ready: true },
+  { to: "/admin/profile", key: "admin.nav.profile", ready: true },
 ];
 
 export default function AdminLayout() {

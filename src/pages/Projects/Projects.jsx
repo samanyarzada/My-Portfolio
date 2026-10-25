@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import EmailButton from "../../components/EmailButton/EmailButton";
 import Loader from "../../components/Loader/Loader";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useContent } from "../../hooks/useContent";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatNumber } from "../../utils/format";
 import "./Projects.css";
 
 export default function Projects() {
+  const profile = useProfile(); 
   const { t, lang } = useTranslation();
   const { loading, projects } = useContent();
 
@@ -18,14 +19,18 @@ export default function Projects() {
     return () => {
       document.title = previous;
     };
-  }, [t]);
+  }, [t, profile.brand]);
 
   return (
     <>
       <section className="container projects-head">
         <span className="eyebrow fade-up">{t("projects.eyebrow")}</span>
-        <h1 className="section-title gradient-text fade-up delay-1">{t("projects.title")}</h1>
-        <p className="section-subtitle fade-up delay-2">{t("projects.subtitle")}</p>
+        <h1 className="section-title gradient-text fade-up delay-1">
+          {t("projects.title")}
+        </h1>
+        <p className="section-subtitle fade-up delay-2">
+          {t("projects.subtitle")}
+        </p>
         {!loading && (
           <p className="projects-count fade-up delay-2">
             {formatNumber(projects.length, lang)} {t("projects.count")}
@@ -44,7 +49,11 @@ export default function Projects() {
       ) : (
         <section className="container projects-grid">
           {projects.map((project, i) => (
-            <div key={project.id} className="fade-up" style={{ animationDelay: `${0.1 * i}s` }}>
+            <div
+              key={project.id}
+              className="fade-up"
+              style={{ animationDelay: `${0.1 * i}s` }}
+            >
               <ProjectCard project={project} />
             </div>
           ))}

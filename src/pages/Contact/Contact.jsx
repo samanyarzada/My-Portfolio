@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import EmailButton from "../../components/EmailButton/EmailButton";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useTranslation } from "../../hooks/useTranslation";
 import "./Contact.css";
 
 export default function Contact() {
   const { t, l } = useTranslation();
+  const profile = useProfile();
 
   useEffect(() => {
     const previous = document.title;
@@ -15,7 +16,7 @@ export default function Contact() {
     return () => {
       document.title = previous;
     };
-  }, [t]);
+  }, [t, profile.brand]);
 
   return (
     <>

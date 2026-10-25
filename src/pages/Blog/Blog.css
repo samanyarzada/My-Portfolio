@@ -99,14 +99,6 @@
   padding: var(--space-8) var(--space-5);
   text-align: center;
 }
-
-.empty-icon {
-  width: 46px;
-  height: 46px;
-  color: var(--neon-blue);
-  filter: drop-shadow(0 0 14px rgba(0, 184, 255, 0.6));
-}
-
 .blog-empty p {
   max-width: 40ch;
   margin-block-end: var(--space-2);

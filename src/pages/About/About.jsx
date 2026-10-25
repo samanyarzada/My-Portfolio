@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import EmailButton from "../../components/EmailButton/EmailButton";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useProfileImage } from "../../hooks/useProfileImage";
 import Journey from "./sections/Journey";
@@ -15,6 +15,7 @@ export default function About() {
   const { t, l } = useTranslation();
   const [imgFailed, setImgFailed] = useState(false);
   const profileImg = useProfileImage();
+  const profile = useProfile();
 
   useEffect(() => {
     const previous = document.title;
@@ -22,7 +23,7 @@ export default function About() {
     return () => {
       document.title = previous;
     };
-  }, [t]);
+  }, [t, profile.brand]);
 
   return (
     <>

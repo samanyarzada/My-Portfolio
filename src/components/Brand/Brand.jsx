@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import "./Brand.css";
 
 export default function Brand({ onClick }) {
+  const profile = useProfile();
   const [first, rest] = profile.brand.split("."); // "Saman" + "dev"
 
   return (

@@ -8,7 +8,7 @@ import PostCover from "../../components/PostCover/PostCover";
 import ReadingProgress from "../../components/ReadingProgress/ReadingProgress";
 import TagBadge from "../../components/TagBadge/TagBadge";
 import { CheckIcon, LinkIcon, SearchIcon } from "../../components/Icons";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useContent } from "../../hooks/useContent";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatDate, formatNumber } from "../../utils/format";
@@ -31,6 +31,7 @@ function getRelated(post, list, limit = 3) {
 export default function PostDetail() {
   const { slug } = useParams();
   const { t, l, lang } = useTranslation();
+  const profile = useProfile();
   const { loading, sortedPosts, categoryById } = useContent();
   const articleRef = useRef(null);
 
@@ -38,7 +39,10 @@ export default function PostDetail() {
   const [copiedSlug, setCopiedSlug] = useState(null);
   const copied = copiedSlug === slug;
 
-  const post = useMemo(() => sortedPosts.find((p) => p.slug === slug), [sortedPosts, slug]);
+  const post = useMemo(
+    () => sortedPosts.find((p) => p.slug === slug),
+    [sortedPosts, slug],
+  );
 
   // Page title in the browser tab
   useEffect(() => {
@@ -50,9 +54,12 @@ export default function PostDetail() {
     return () => {
       document.title = previous;
     };
-  }, [loading, post, l, t]);
+  }, [loading, post, l, t, profile.brand]);
 
-  const related = useMemo(() => (post ? getRelated(post, sortedPosts) : []), [post, sortedPosts]);
+  const related = useMemo(
+    () => (post ? getRelated(post, sortedPosts) : []),
+    [post, sortedPosts],
+  );
 
   const { newer, older } = useMemo(() => {
     if (!post) return {};
@@ -103,7 +110,10 @@ export default function PostDetail() {
           </Link>
 
           <div className="detail-meta fade-up">
-            <Link to={`/blog?category=${post.category}`} className="detail-category">
+            <Link
+              to={`/blog?category=${post.category}`}
+              className="detail-category"
+            >
               {category ? l(category.name) : post.category}
             </Link>
             <span className="post-dot" />
@@ -144,7 +154,11 @@ export default function PostDetail() {
             ))}
           </ul>
 
-          <button type="button" className="btn btn-ghost copy-btn" onClick={copyLink}>
+          <button
+            type="button"
+            className="btn btn-ghost copy-btn"
+            onClick={copyLink}
+          >
             {copied ? <CheckIcon /> : <LinkIcon />}
             <span aria-live="polite">
               {copied ? t("postDetail.copied") : t("postDetail.copyLink")}
@@ -159,11 +173,18 @@ export default function PostDetail() {
       </div>
 
       {/* ---------- Newer / older ---------- */}
-      <nav className="container-narrow post-nav" aria-label="Article navigation">
+      <nav
+        className="container-narrow post-nav"
+        aria-label="Article navigation"
+      >
         {newer ? (
-          <Link to={`/blog/${newer.slug}`} className="post-nav-item glass glass-hover">
+          <Link
+            to={`/blog/${newer.slug}`}
+            className="post-nav-item glass glass-hover"
+          >
             <span className="post-nav-label">
-              <span className="arrow back-arrow">→</span> {t("postDetail.newer")}
+              <span className="arrow back-arrow">→</span>{" "}
+              {t("postDetail.newer")}
             </span>
             <strong>{l(newer.title)}</strong>
           </Link>
@@ -172,7 +193,10 @@ export default function PostDetail() {
         )}
 
         {older ? (
-          <Link to={`/blog/${older.slug}`} className="post-nav-item glass glass-hover is-older">
+          <Link
+            to={`/blog/${older.slug}`}
+            className="post-nav-item glass glass-hover is-older"
+          >
             <span className="post-nav-label">
               {t("postDetail.older")} <span className="arrow">→</span>
             </span>

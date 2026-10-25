@@ -14,6 +14,7 @@ const links = [
   { to: "/about", key: "nav.about" },
   { to: "/blog", key: "nav.blog" },
   { to: "/contact", key: "nav.contact" },
+   { to: "/admin", key: "nav.admin" },
 ];
 
 export default function Navbar() {

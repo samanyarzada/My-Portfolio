@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Brand from "../Brand/Brand";
 import SocialLinks from "../SocialLinks/SocialLinks";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useTranslation } from "../../hooks/useTranslation";
 import "./Footer.css";
 
@@ -12,11 +12,12 @@ const links = [
   { to: "/about", key: "nav.about" },
   { to: "/blog", key: "nav.blog" },
   { to: "/contact", key: "nav.contact" },
+  { to: "/admin", key: "nav.admin" },
 ];
 export default function Footer() {
   const { t, l } = useTranslation();
   const year = new Date().getFullYear();
-
+const profile = useProfile();
   return (
     <footer className="footer">
       <div className="container footer-grid">

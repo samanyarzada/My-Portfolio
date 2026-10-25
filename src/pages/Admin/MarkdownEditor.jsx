@@ -56,28 +56,55 @@ export default function MarkdownEditor({ id, value, onChange, lang, invalid = fa
     onChange(text.slice(0, lineStart) + changed + text.slice(lineEnd));
   };
 
-  const tools = [
-    { key: "bold", label: "B", run: () => wrap("**", "**", t("admin.posts.editor.sampleBold")) },
-    { key: "italic", label: "I", run: () => wrap("*", "*", t("admin.posts.editor.sampleItalic")) },
-    { key: "h2", label: "H2", run: () => prefixLines("## ") },
-    { key: "h3", label: "H3", run: () => prefixLines("### ") },
-    { key: "link", label: "Link", run: () => wrap("[", "](https://)", t("admin.posts.editor.sampleLink")) },
-    { key: "list", label: "•", run: () => prefixLines("- ") },
-    { key: "orderedList", label: "1.", run: () => prefixLines((i) => `${i + 1}. `) },
-    { key: "quote", label: "”", run: () => prefixLines("> ") },
-    { key: "code", label: "</>", run: () => wrap("`", "`", "code") },
-    { key: "codeBlock", label: "{ }", run: () => wrap(`\n${FENCE}\n`, `\n${FENCE}\n`, "code") },
-  ];
 
-  const handleKeyDown = (e) => {
+  const TOOLS = [
+  { key: "bold", label: "B" },
+  { key: "italic", label: "I" },
+  { key: "h2", label: "H2" },
+  { key: "h3", label: "H3" },
+  { key: "link", label: "Link" },
+  { key: "list", label: "•" },
+  { key: "orderedList", label: "1." },
+  { key: "quote", label: "”" },
+  { key: "code", label: "</>" },
+  { key: "codeBlock", label: "{ }" },
+];
+  const runTool = (key) => {
+    switch (key) {
+      case "bold":
+        return wrap("**", "**", t("admin.posts.editor.sampleBold"));
+      case "italic":
+        return wrap("*", "*", t("admin.posts.editor.sampleItalic"));
+      case "h2":
+        return prefixLines("## ");
+      case "h3":
+        return prefixLines("### ");
+      case "link":
+        return wrap("[", "](https://)", t("admin.posts.editor.sampleLink"));
+      case "list":
+        return prefixLines("- ");
+      case "orderedList":
+        return prefixLines((i) => `${i + 1}. `);
+      case "quote":
+        return prefixLines("> ");
+      case "code":
+        return wrap("`", "`", "code");
+      case "codeBlock":
+        return wrap(`\n${FENCE}\n`, `\n${FENCE}\n`, "code");
+      default:
+        return undefined;
+    }
+  };
+
+   const handleKeyDown = (e) => {
     if (!(e.ctrlKey || e.metaKey) || e.altKey) return;
     const key = e.key.toLowerCase();
     if (key === "b") {
       e.preventDefault();
-      tools[0].run();
+      runTool("bold");
     } else if (key === "i") {
       e.preventDefault();
-      tools[1].run();
+      runTool("italic");
     }
   };
 
@@ -101,12 +128,12 @@ export default function MarkdownEditor({ id, value, onChange, lang, invalid = fa
       <div className="md-panes">
         <div className="md-pane md-write">
           <div className="md-toolbar" role="toolbar" aria-label={t("admin.posts.editor.toolbar")}>
-            {tools.map((tool) => (
+                        {TOOLS.map((tool) => (
               <button
                 key={tool.key}
                 type="button"
                 className="md-tool"
-                onClick={tool.run}
+                onClick={() => runTool(tool.key)}
                 title={t(`admin.posts.editor.${tool.key}`)}
                 aria-label={t(`admin.posts.editor.${tool.key}`)}
               >

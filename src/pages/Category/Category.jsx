@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import PostsListPage from "../../components/PostsListPage/PostsListPage";
 import { SearchIcon } from "../../components/Icons";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useContent } from "../../hooks/useContent";
 import { useTranslation } from "../../hooks/useTranslation";
 import "../PostDetail/PostDetail.css";
@@ -13,7 +13,7 @@ export default function Category() {
   const { t, l } = useTranslation();
   const { loading, categoryById, sortedPosts } = useContent();
   const category = categoryById[name];
-
+  const profile = useProfile();
   useEffect(() => {
     if (loading) return;
     const previous = document.title;
@@ -21,7 +21,7 @@ export default function Category() {
     return () => {
       document.title = previous;
     };
-  }, [loading, category, l, t]);
+  }, [loading, category, l, t, profile.brand]);
 
   if (loading) return <Loader />;
 
