@@ -11,7 +11,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 const links = [
   { to: "/admin", key: "admin.nav.dashboard", end: true, ready: true },
   { to: "/admin/projects", key: "admin.nav.projects", ready: true },
-  { to: "/admin/posts", key: "admin.nav.posts", ready: false },
+  { to: "/admin/posts", key: "admin.nav.posts", ready: true },
   { to: "/admin/categories", key: "admin.nav.categories", ready: false },
   { to: "/admin/profile", key: "admin.nav.profile", ready: false },
 ];

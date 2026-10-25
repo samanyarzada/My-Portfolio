@@ -1,6 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "../../context/AuthContext";
 import { ToastProvider } from "../../context/ToastContext";
+import PostForm from "./PostForm";
+import PostsList from "./PostsList";
 import AdminLayout from "./AdminLayout";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
@@ -23,6 +25,9 @@ export default function AdminApp() {
               <Route path="projects" element={<ProjectsList />} />
               <Route path="projects/new" element={<ProjectForm />} />
               <Route path="projects/:id/edit" element={<ProjectForm />} />
+                            <Route path="posts" element={<PostsList />} />
+              <Route path="posts/new" element={<PostForm />} />
+              <Route path="posts/:id/edit" element={<PostForm />} />
               {/* The next steps add: posts, categories, profile */}
               <Route path="*" element={<Navigate to="/admin" replace />} />
             </Route>

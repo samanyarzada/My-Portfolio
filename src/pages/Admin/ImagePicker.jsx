@@ -26,12 +26,17 @@ export default function ImagePicker({
   error,
   hint,
   light = false,
+  aspect = "16 / 9",
+  maxWidth = 1280,
 }) {
   const { t } = useTranslation();
   const [localError, setLocalError] = useState("");
   const [working, setWorking] = useState(false);
 
-  const previewUrl = useMemo(() => (blob ? URL.createObjectURL(blob) : null), [blob]);
+  const previewUrl = useMemo(
+    () => (blob ? URL.createObjectURL(blob) : null),
+    [blob],
+  );
   useEffect(() => {
     return () => {
       if (previewUrl) URL.revokeObjectURL(previewUrl);
@@ -39,7 +44,8 @@ export default function ImagePicker({
   }, [previewUrl]);
 
   const shown = previewUrl ?? currentUrl;
-  const message = error || (localError ? t(`admin.projects.errors.${localError}`) : "");
+  const message =
+    error || (localError ? t(`admin.projects.errors.${localError}`) : "");
 
   const handleFile = async (e) => {
     const file = e.target.files?.[0];
@@ -49,7 +55,7 @@ export default function ImagePicker({
     setLocalError("");
     setWorking(true);
     try {
-      onBlob(await compressToWebp(file));
+      onBlob(await compressToWebp(file, maxWidth));
     } catch (err) {
       setLocalError(ERROR_KEYS[err.message] ?? "imageDecode");
     } finally {
@@ -63,13 +69,22 @@ export default function ImagePicker({
         {label}
       </span>
 
-      <div className={`image-preview ${light ? "is-light" : ""}`}>
-        <PreviewImage key={shown} src={shown} emptyText={t("admin.projects.noImage")} />
+      <div
+        className={`image-preview ${light ? "is-light" : ""}`}
+        style={{ aspectRatio: aspect }}
+      >
+        {" "}
+        <PreviewImage
+          key={shown}
+          src={shown}
+          emptyText={t("admin.projects.noImage")}
+        />
       </div>
 
       {blob && (
         <p className="admin-hint">
-          {t("admin.projects.newImage")}: {Math.round(blob.size / 1024)} KB (WebP)
+          {t("admin.projects.newImage")}: {Math.round(blob.size / 1024)} KB
+          (WebP)
         </p>
       )}
 
@@ -90,7 +105,11 @@ export default function ImagePicker({
       )}
 
       {blob && (
-        <button type="button" className="btn btn-ghost" onClick={() => onBlob(null)}>
+        <button
+          type="button"
+          className="btn btn-ghost"
+          onClick={() => onBlob(null)}
+        >
           {t("admin.projects.clearSelection")}
         </button>
       )}

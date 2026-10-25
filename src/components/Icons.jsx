@@ -140,3 +140,8 @@ export const EyeOffIcon = (props) => (
     <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
   </svg>
 );
+export const StarIcon = ({ filled = false, ...props }) => (
+  <svg {...stroke} fill={filled ? "currentColor" : "none"} {...props}>
+    <path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9Z" />
+  </svg>
+);
