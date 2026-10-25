@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { coverSymbols } from "../../data/posts";
+import { useContent } from "../../hooks/useContent";
 import { useTheme } from "../../hooks/useTheme";
 import { lightSrc } from "../../utils/themedImage";
 import "./PostCover.css";
@@ -8,12 +8,14 @@ import "./PostCover.css";
 // Light theme: "-light" image first, then the dark image, then the gradient cover.
 export default function PostCover({ post, alt = "", className = "", children }) {
   const { isLight } = useTheme();
+  const { categoryById } = useContent();
   const [lightFailed, setLightFailed] = useState(false);
   const [failed, setFailed] = useState(false);
 
   const useLight = isLight && !lightFailed;
   const showImage = Boolean(post.image) && !failed;
   const src = useLight ? lightSrc(post.image) : post.image;
+  const symbol = categoryById[post.category]?.symbol || "</>";
 
   const handleError = () => {
     if (useLight) setLightFailed(true);
@@ -36,7 +38,7 @@ export default function PostCover({ post, alt = "", className = "", children }) 
         />
       ) : (
         <span className="post-cover-symbol" aria-hidden="true">
-          {coverSymbols[post.category] ?? "</>"}
+          {symbol}
         </span>
       )}
       {children}

@@ -1,24 +1,29 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 import PostsListPage from "../../components/PostsListPage/PostsListPage";
 import { SearchIcon } from "../../components/Icons";
-import { getCategoryById, getPostsByCategory } from "../../data/posts";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
+import { useContent } from "../../hooks/useContent";
 import { useTranslation } from "../../hooks/useTranslation";
 import "../PostDetail/PostDetail.css";
 
 export default function Category() {
   const { name } = useParams();
   const { t, l } = useTranslation();
-  const category = getCategoryById(name);
-
+  const { loading, categoryById, sortedPosts } = useContent();
+  const category = categoryById[name];
+  const profile = useProfile();
   useEffect(() => {
+    if (loading) return;
     const previous = document.title;
     document.title = `${category ? l(category.name) : t("filterPage.unknownCategory")} | ${profile.brand}`;
     return () => {
       document.title = previous;
     };
-  }, [category, l, t]);
+  }, [loading, category, l, t, profile.brand]);
+
+  if (loading) return <Loader />;
 
   if (!category) {
     return (
@@ -38,7 +43,7 @@ export default function Category() {
     <PostsListPage
       eyebrow={t("filterPage.categoryEyebrow")}
       title={l(category.name)}
-      posts={getPostsByCategory(category.id)}
+      posts={sortedPosts.filter((p) => p.category === category.id)}
       activeCategory={category.id}
     />
   );

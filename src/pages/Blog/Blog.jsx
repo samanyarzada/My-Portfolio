@@ -3,8 +3,9 @@ import { useSearchParams } from "react-router-dom";
 import PostCard from "../../components/PostCard/PostCard";
 import CategoryList from "../../components/CategoryList/CategoryList";
 import Pagination from "../../components/Pagination/Pagination";
+import Loader from "../../components/Loader/Loader";
 import { CloseIcon, SearchIcon } from "../../components/Icons";
-import { categories, posts } from "../../data/posts";
+import { useContent } from "../../hooks/useContent";
 import { usePagination } from "../../hooks/usePagination";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatNumber } from "../../utils/format";
@@ -12,25 +13,26 @@ import "./Blog.css";
 
 const PER_PAGE = 6;
 
-// Newest first, and category counts, computed once
-const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));
-const counts = posts.reduce((acc, p) => {
-  acc[p.category] = (acc[p.category] ?? 0) + 1;
-  return acc;
-}, {});
-
 export default function Blog() {
   const { t, lang } = useTranslation();
+  const { loading, categories, sortedPosts } = useContent();
   const [searchParams, setSearchParams] = useSearchParams();
   const resultsRef = useRef(null);
 
-  // ----- Read state from the URL -----
+  // ----- Read state from the URL (the URL is the single source of truth) -----
   const urlQuery = searchParams.get("q") ?? "";
   const rawCategory = searchParams.get("category");
-  const category = categories.some((c) => c.id === rawCategory)
-    ? rawCategory
-    : "all";
+  const category = categories.some((c) => c.id === rawCategory) ? rawCategory : "all";
   const pageParam = parseInt(searchParams.get("page") ?? "1", 10) || 1;
+
+  const counts = useMemo(
+    () =>
+      sortedPosts.reduce((acc, p) => {
+        acc[p.category] = (acc[p.category] ?? 0) + 1;
+        return acc;
+      }, {}),
+    [sortedPosts]
+  );
 
   // ----- Write state to the URL -----
   const updateParams = (changes, { replace = false } = {}) => {
@@ -50,10 +52,8 @@ export default function Blog() {
     setSearchParams(next, { replace });
   };
 
-  const handleSearch = (value) => {
-    // replace: typing should not fill the browser history
-    updateParams({ q: value, page: 1 }, { replace: true });
-  };
+  // replace: typing should not fill the browser history
+  const handleSearch = (value) => updateParams({ q: value, page: 1 }, { replace: true });
 
   const handleCategory = (id) => updateParams({ category: id, page: 1 });
 
@@ -62,9 +62,7 @@ export default function Blog() {
     resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const clearAll = () => {
-    setSearchParams({});
-  };
+  const clearAll = () => setSearchParams({});
 
   // ----- Filter + paginate -----
   const filtered = useMemo(() => {
@@ -87,32 +85,28 @@ export default function Blog() {
 
       return haystack.includes(q);
     });
-  }, [urlQuery, category]);
+  }, [sortedPosts, urlQuery, category]);
 
   const { pageItems, currentPage, totalPages, total } = usePagination(
     filtered,
     pageParam,
-    PER_PAGE,
+    PER_PAGE
   );
+
+  if (loading) return <Loader />;
 
   return (
     <>
       {/* ---------- Header ---------- */}
       <section className="container blog-head">
         <span className="eyebrow fade-up">{t("blog.eyebrow")}</span>
-        <h1 className="section-title gradient-text fade-up delay-1">
-          {t("blog.title")}
-        </h1>
+        <h1 className="section-title gradient-text fade-up delay-1">{t("blog.title")}</h1>
         <p className="section-subtitle fade-up delay-2">{t("blog.subtitle")}</p>
       </section>
 
       {/* ---------- Search + filter ---------- */}
       <section className="container blog-toolbar fade-up delay-2">
-        <form
-          className="search-field"
-          role="search"
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form className="search-field" role="search" onSubmit={(e) => e.preventDefault()}>
           <SearchIcon className="search-icon" />
           <input
             className="input search-input"
@@ -140,7 +134,7 @@ export default function Blog() {
         <CategoryList
           categories={categories}
           counts={counts}
-          total={posts.length}
+          total={sortedPosts.length}
           active={category}
           onSelect={handleCategory}
         />
@@ -156,11 +150,7 @@ export default function Blog() {
           <>
             <div className="blog-grid">
               {pageItems.map((post, i) => (
-                <div
-                  key={post.id}
-                  className="fade-up"
-                  style={{ animationDelay: `${0.07 * i}s` }}
-                >
+                <div key={post.id} className="fade-up" style={{ animationDelay: `${0.07 * i}s` }}>
                   <PostCard post={post} />
                 </div>
               ))}

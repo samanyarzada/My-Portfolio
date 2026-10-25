@@ -1,4 +1,4 @@
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useTranslation } from "../../hooks/useTranslation";
 import { MailIcon } from "../Icons";
 import "./EmailButton.css";
@@ -9,7 +9,7 @@ import "./EmailButton.css";
  */
 export default function EmailButton({ variant = "primary", iconOnly = false, className = "" }) {
   const { t } = useTranslation();
-
+  const profile = useProfile();
   const handleClick = () => {
     const { emailUser, emailDomain } = profile.contact;
     const subject = encodeURIComponent(t("email.subject"));

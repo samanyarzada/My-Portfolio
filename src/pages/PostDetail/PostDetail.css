@@ -8,12 +8,6 @@
 }
 
 /* The base arrow points forward, so the back arrow is the mirrored one */
-.back-arrow {
-  transform: scaleX(-1);
-}
-html[dir="rtl"] .back-arrow {
-  transform: none;
-}
 
 .detail-back:hover .back-arrow {
   transform: scaleX(-1) translateX(4px);

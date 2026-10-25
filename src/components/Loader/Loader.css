@@ -17,7 +17,9 @@
   box-shadow: 0 0 20px rgba(0, 184, 255, 0.25);
   animation: loaderSpin 0.8s linear infinite;
 }
-
+.loader.compact {
+  min-height: 220px;
+}
 @keyframes loaderSpin {
   to {
     transform: rotate(360deg);

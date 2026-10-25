@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import EmailButton from "../../components/EmailButton/EmailButton";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
 import SkillCard from "../../components/SkillCard/SkillCard";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useTranslation } from "../../hooks/useTranslation";
 import "./Skills.css";
 
@@ -11,6 +11,7 @@ const GROUPS = ["frontend", "tools", "languages"];
 
 export default function Skills() {
   const { t, l } = useTranslation();
+  const profile = useProfile();
 
   useEffect(() => {
     const previous = document.title;
@@ -18,7 +19,7 @@ export default function Skills() {
     return () => {
       document.title = previous;
     };
-  }, [t]);
+  }, [t, profile.brand]);
 
   const learning = profile.skills.filter((s) => s.level === "learning");
 

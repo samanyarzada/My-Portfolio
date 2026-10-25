@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import { useTranslation } from "../../hooks/useTranslation";
 import "./NotFound.css";
 
 export default function NotFound() {
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const profile = useProfile();
 
   useEffect(() => {
     const previous = document.title;
@@ -14,7 +15,7 @@ export default function NotFound() {
     return () => {
       document.title = previous;
     };
-  }, []);
+  }, [profile.brand]);
 
   return (
     <section className="container notfound">

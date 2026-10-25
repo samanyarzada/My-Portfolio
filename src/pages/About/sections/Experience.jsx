@@ -1,9 +1,10 @@
 import SectionHeader from "../../../components/SectionHeader/SectionHeader";
-import { profile } from "../../../data/profile";
+import { useProfile } from "../../../hooks/useProfile";
 import { useTranslation } from "../../../hooks/useTranslation";
 
 export default function Experience() {
   const { t, l } = useTranslation();
+  const profile = useProfile();
 
   return (
     <section className="container about-section">

@@ -18,8 +18,16 @@ export function useTranslation() {
     [lang]
   );
 
-  // l(profile.name) -> picks the current language from { en, fa } objects
-  const l = useCallback((obj) => obj?.[lang] ?? obj?.en, [lang]);
+   // l(profile.name) -> picks the current language from { en, fa } objects.
+  // An empty translation falls back to English.
+  const l = useCallback(
+    (obj) => {
+      const value = obj?.[lang];
+      const empty = Array.isArray(value) ? value.length === 0 : !value;
+      return empty ? obj?.en : value;
+    },
+    [lang]
+  );
 
   return { t, l, ...ctx };
 }

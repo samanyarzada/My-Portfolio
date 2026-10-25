@@ -1,15 +1,17 @@
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
 import EmailButton from "../EmailButton/EmailButton";
 import { GithubIcon, LinkedinIcon, TelegramIcon } from "../Icons";
 import "./SocialLinks.css";
 
-const items = [
-  { key: "github", label: "GitHub", href: profile.social.github, Icon: GithubIcon },
-  { key: "linkedin", label: "LinkedIn", href: profile.social.linkedin, Icon: LinkedinIcon },
-  { key: "telegram", label: "Telegram", href: profile.social.telegram, Icon: TelegramIcon },
-];
-
 export default function SocialLinks({ showEmail = true }) {
+  const { social } = useProfile();
+
+  const items = [
+    { key: "github", label: "GitHub", href: social.github, Icon: GithubIcon },
+    { key: "linkedin", label: "LinkedIn", href: social.linkedin, Icon: LinkedinIcon },
+    { key: "telegram", label: "Telegram", href: social.telegram, Icon: TelegramIcon },
+  ];
+
   return (
     <ul className="social-links">
       {items.map(({ key, label, href, Icon }) => (

@@ -1,4 +1,5 @@
-import { lazy } from "react";
+import { Suspense, lazy } from "react";
+import Loader from "./components/Loader/Loader";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home/Home";
@@ -12,10 +13,19 @@ const Category = lazy(() => import("./pages/Category/Category"));
 const Tag = lazy(() => import("./pages/Tag/Tag"));
 const Contact = lazy(() => import("./pages/Contact/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"));
+const AdminApp = lazy(() => import("./pages/Admin/AdminApp"));
 
 export default function App() {
   return (
     <Routes>
+      <Route
+        path="admin/*"
+        element={
+          <Suspense fallback={<Loader />}>
+            <AdminApp />
+          </Suspense>
+        }
+      />
       <Route element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route path="projects" element={<Projects />} />

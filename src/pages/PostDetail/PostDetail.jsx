@@ -1,22 +1,21 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import AuthorBox from "../../components/AuthorBox/AuthorBox";
+import Loader from "../../components/Loader/Loader";
+import Markdown from "../../components/Markdown/Markdown";
 import PostCard from "../../components/PostCard/PostCard";
+import PostCover from "../../components/PostCover/PostCover";
 import ReadingProgress from "../../components/ReadingProgress/ReadingProgress";
 import TagBadge from "../../components/TagBadge/TagBadge";
 import { CheckIcon, LinkIcon, SearchIcon } from "../../components/Icons";
-import { getCategoryById, getPostBySlug, posts } from "../../data/posts";
-import { profile } from "../../data/profile";
+import { useProfile } from "../../hooks/useProfile";
+import { useContent } from "../../hooks/useContent";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatDate, formatNumber } from "../../utils/format";
-import PostCover from "../../components/PostCover/PostCover";
 import "./PostDetail.css";
 
-// Newest first
-const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
-
-function getRelated(post, limit = 3) {
-  return sorted
+function getRelated(post, list, limit = 3) {
+  return list
     .filter((p) => p.id !== post.id)
     .map((p) => ({
       post: p,
@@ -32,15 +31,22 @@ function getRelated(post, limit = 3) {
 export default function PostDetail() {
   const { slug } = useParams();
   const { t, l, lang } = useTranslation();
+  const profile = useProfile();
+  const { loading, sortedPosts, categoryById } = useContent();
   const articleRef = useRef(null);
-   // Stores the slug that was copied, so it resets by itself when the article changes
+
+  // Stores the slug that was copied, so it resets by itself when the article changes
   const [copiedSlug, setCopiedSlug] = useState(null);
   const copied = copiedSlug === slug;
 
-  const post = getPostBySlug(slug);
+  const post = useMemo(
+    () => sortedPosts.find((p) => p.slug === slug),
+    [sortedPosts, slug],
+  );
 
   // Page title in the browser tab
   useEffect(() => {
+    if (loading) return;
     const previous = document.title;
     document.title = post
       ? `${l(post.title)} | ${profile.brand}`
@@ -48,19 +54,20 @@ export default function PostDetail() {
     return () => {
       document.title = previous;
     };
-  }, [post, l, t]);
+  }, [loading, post, l, t, profile.brand]);
 
-
-
-  const related = useMemo(() => (post ? getRelated(post) : []), [post]);
+  const related = useMemo(
+    () => (post ? getRelated(post, sortedPosts) : []),
+    [post, sortedPosts],
+  );
 
   const { newer, older } = useMemo(() => {
     if (!post) return {};
-    const i = sorted.findIndex((p) => p.id === post.id);
-    return { newer: sorted[i - 1], older: sorted[i + 1] };
-  }, [post]);
+    const i = sortedPosts.findIndex((p) => p.id === post.id);
+    return { newer: sortedPosts[i - 1], older: sortedPosts[i + 1] };
+  }, [post, sortedPosts]);
 
-   const copyLink = async () => {
+  const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
       setCopiedSlug(slug);
@@ -69,6 +76,8 @@ export default function PostDetail() {
       // Clipboard can be blocked (for example on non-HTTPS pages), so we do nothing
     }
   };
+
+  if (loading) return <Loader />;
 
   // ----- Article not found -----
   if (!post) {
@@ -86,8 +95,8 @@ export default function PostDetail() {
     );
   }
 
-  const category = getCategoryById(post.category);
-  const paragraphs = post.content[lang] ?? post.content.en;
+  const category = categoryById[post.category];
+  const markdown = post.content[lang] || post.content.en;
 
   return (
     <>
@@ -101,8 +110,11 @@ export default function PostDetail() {
           </Link>
 
           <div className="detail-meta fade-up">
-            <Link to={`/blog?category=${post.category}`} className="detail-category">
-              {l(category.name)}
+            <Link
+              to={`/blog?category=${post.category}`}
+              className="detail-category"
+            >
+              {category ? l(category.name) : post.category}
             </Link>
             <span className="post-dot" />
             <time dateTime={post.date}>{formatDate(post.date, lang)}</time>
@@ -123,15 +135,13 @@ export default function PostDetail() {
         </header>
 
         {/* ---------- Cover ---------- */}
-          <div className="container detail-cover-wrap fade-up delay-3">
+        <div className="container detail-cover-wrap fade-up delay-3">
           <PostCover post={post} alt={l(post.title)} className="detail-cover" />
         </div>
 
-        {/* ---------- Body ---------- */}
+        {/* ---------- Body (Markdown) ---------- */}
         <div className="container-narrow article-body">
-          {paragraphs.map((text, i) => (
-            <p key={i}>{text}</p>
-          ))}
+          <Markdown>{markdown}</Markdown>
         </div>
 
         {/* ---------- Tags + share ---------- */}
@@ -144,7 +154,11 @@ export default function PostDetail() {
             ))}
           </ul>
 
-          <button type="button" className="btn btn-ghost copy-btn" onClick={copyLink}>
+          <button
+            type="button"
+            className="btn btn-ghost copy-btn"
+            onClick={copyLink}
+          >
             {copied ? <CheckIcon /> : <LinkIcon />}
             <span aria-live="polite">
               {copied ? t("postDetail.copied") : t("postDetail.copyLink")}
@@ -159,11 +173,18 @@ export default function PostDetail() {
       </div>
 
       {/* ---------- Newer / older ---------- */}
-      <nav className="container-narrow post-nav" aria-label="Article navigation">
+      <nav
+        className="container-narrow post-nav"
+        aria-label="Article navigation"
+      >
         {newer ? (
-          <Link to={`/blog/${newer.slug}`} className="post-nav-item glass glass-hover">
+          <Link
+            to={`/blog/${newer.slug}`}
+            className="post-nav-item glass glass-hover"
+          >
             <span className="post-nav-label">
-              <span className="arrow back-arrow">→</span> {t("postDetail.newer")}
+              <span className="arrow back-arrow">→</span>{" "}
+              {t("postDetail.newer")}
             </span>
             <strong>{l(newer.title)}</strong>
           </Link>
@@ -172,7 +193,10 @@ export default function PostDetail() {
         )}
 
         {older ? (
-          <Link to={`/blog/${older.slug}`} className="post-nav-item glass glass-hover is-older">
+          <Link
+            to={`/blog/${older.slug}`}
+            className="post-nav-item glass glass-hover is-older"
+          >
             <span className="post-nav-label">
               {t("postDetail.older")} <span className="arrow">→</span>
             </span>
