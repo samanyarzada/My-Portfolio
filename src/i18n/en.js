@@ -206,6 +206,7 @@ const en = {
     imageError: "Screenshot could not be loaded",
     ctaTitle: "Like what you see?",
     ctaText: "I am looking for junior front-end opportunities. Let's talk.",
+        empty: "No projects yet.",
   },
     loader: {
     loading: "Loading...",

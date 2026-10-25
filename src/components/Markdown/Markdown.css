@@ -1,0 +1,159 @@
+.markdown {
+  overflow-wrap: anywhere;
+  line-height: 1.9;
+  color: #d3d9ec;
+}
+
+html[data-theme="light"] .markdown {
+  color: #26304d;
+}
+
+html[lang="fa"] .markdown {
+  line-height: 2.1;
+}
+
+.markdown > :first-child {
+  margin-block-start: 0;
+}
+
+/* ---------- Headings ---------- */
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  color: var(--text-title);
+}
+
+.markdown h2 {
+  margin-block: 2.4rem 1rem;
+  font-size: var(--fs-2xl);
+}
+
+.markdown h3 {
+  margin-block: 2rem 0.8rem;
+  font-size: var(--fs-xl);
+}
+
+.markdown h4 {
+  margin-block: 1.6rem 0.6rem;
+  font-size: var(--fs-lg);
+}
+
+.markdown p {
+  margin-block-end: 1.4rem;
+}
+
+.markdown strong {
+  color: var(--text-title);
+}
+
+/* ---------- Links ---------- */
+.markdown a {
+  color: var(--neon-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.markdown a:hover {
+  color: var(--teal);
+}
+
+/* ---------- Lists (the global reset removes bullets) ---------- */
+.markdown ul,
+.markdown ol {
+  margin-block-end: 1.4rem;
+  padding-inline-start: 1.6rem;
+}
+
+.markdown ul {
+  list-style: disc;
+}
+
+.markdown ol {
+  list-style: decimal;
+}
+
+.markdown li {
+  margin-block: 0.35rem;
+}
+
+.markdown li::marker {
+  color: var(--neon-blue);
+}
+
+/* ---------- Code (always left to right) ---------- */
+.markdown :not(pre) > code {
+  padding: 0.15rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: rgba(0, 184, 255, 0.1);
+  border: 1px solid rgba(0, 184, 255, 0.25);
+  border-radius: 6px;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.markdown pre {
+  margin-block-end: 1.6rem;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  direction: ltr;
+  text-align: left;
+}
+
+.markdown pre code {
+  font-family: var(--font-mono);
+}
+
+/* ---------- Quote, rule, image, table ---------- */
+.markdown blockquote {
+  margin-block-end: 1.6rem;
+  padding: 0.6rem 1.2rem;
+  border-inline-start: 3px solid var(--neon-blue);
+  background: rgba(0, 184, 255, 0.06);
+  border-radius: var(--radius-sm);
+}
+
+.markdown blockquote p:last-child {
+  margin-block-end: 0;
+}
+
+.markdown hr {
+  height: 1px;
+  margin-block: 2.2rem;
+  border: 0;
+  background: var(--border-medium);
+}
+
+.markdown img {
+  margin-block: 1.2rem;
+  border-radius: var(--radius-md);
+}
+
+.table-wrap {
+  margin-block-end: 1.6rem;
+  overflow-x: auto;
+}
+
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.markdown th,
+.markdown td {
+  padding: 0.6rem 0.9rem;
+  text-align: start;
+  border-bottom: 1px solid var(--border-medium);
+}
+
+.markdown th {
+  color: var(--text-title);
+  background: rgba(0, 184, 255, 0.07);
+}

@@ -9,7 +9,7 @@ export default function ProjectCard({ project }) {
   const { t, l } = useTranslation();
   const { isLight } = useTheme();
   const imgRef = useRef(null);
-  const [imgState, setImgState] = useState("loading"); // loading | loaded | error
+  const [imgState, setImgState] = useState(project.image ? "loading" : "error"); // loading | loaded | error
   const [lightFailed, setLightFailed] = useState(false);
 
   // Light theme uses the "-light" image, with the dark one as a fallback
@@ -32,11 +32,19 @@ export default function ProjectCard({ project }) {
     <article className="project-card glass glass-hover">
       <div className="project-media" data-state={imgState}>
         {imgState === "loading" && (
-          <div className="project-skeleton" role="status" aria-label={t("projects.imageLoading")} />
+          <div
+            className="project-skeleton"
+            role="status"
+            aria-label={t("projects.imageLoading")}
+          />
         )}
 
         {imgState === "error" ? (
-          <div className="project-fallback" role="img" aria-label={t("projects.imageError")}>
+          <div
+            className="project-fallback"
+            role="img"
+            aria-label={t("projects.imageError")}
+          >
             <span className="project-fallback-letter">{title.charAt(0)}</span>
             <span>{t("projects.imageError")}</span>
           </div>

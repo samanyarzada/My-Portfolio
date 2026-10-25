@@ -36,7 +36,11 @@
   text-align: center;
   background:
     radial-gradient(60% 90% at 0% 0%, rgba(91, 26, 140, 0.35), transparent 70%),
-    radial-gradient(60% 90% at 100% 100%, rgba(0, 184, 255, 0.22), transparent 70%),
+    radial-gradient(
+      60% 90% at 100% 100%,
+      rgba(0, 184, 255, 0.22),
+      transparent 70%
+    ),
     var(--bg-elevated);
 }
 
@@ -49,7 +53,10 @@
   font-size: var(--fs-lg);
   color: var(--text-secondary);
 }
-
+.projects-empty {
+  padding: var(--space-7) var(--space-5);
+  text-align: center;
+}
 @media (max-width: 820px) {
   .projects-head {
     padding-block-start: var(--space-6);

@@ -2,16 +2,15 @@ import { Link } from "react-router-dom";
 import PostCard from "../PostCard/PostCard";
 import TagBadge from "../TagBadge/TagBadge";
 import { SearchIcon } from "../Icons";
-import { categories, getAllTags } from "../../data/posts";
+import { useContent } from "../../hooks/useContent";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatNumber } from "../../utils/format";
 import "../CategoryList/CategoryList.css";
 import "./PostsListPage.css";
 
-const allTags = getAllTags();
-
 export default function PostsListPage({ eyebrow, title, posts, activeCategory, activeTag }) {
   const { t, l, lang } = useTranslation();
+  const { categories, allTags } = useContent();
 
   // Newest first
   const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
