@@ -10,7 +10,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 // Pages that will be built in the next steps are listed but not clickable yet
 const links = [
   { to: "/admin", key: "admin.nav.dashboard", end: true, ready: true },
-  { to: "/admin/projects", key: "admin.nav.projects", ready: false },
+  { to: "/admin/projects", key: "admin.nav.projects", ready: true },
   { to: "/admin/posts", key: "admin.nav.posts", ready: false },
   { to: "/admin/categories", key: "admin.nav.categories", ready: false },
   { to: "/admin/profile", key: "admin.nav.profile", ready: false },
@@ -41,7 +41,9 @@ export default function AdminLayout() {
                   <NavLink
                     to={to}
                     end={end}
-                    className={({ isActive }) => `admin-link ${isActive ? "active" : ""}`}
+                    className={({ isActive }) =>
+                      `admin-link ${isActive ? "active" : ""}`
+                    }
                   >
                     {t(key)}
                   </NavLink>
@@ -68,7 +70,12 @@ export default function AdminLayout() {
             <Link to="/" className="btn btn-ghost">
               {t("admin.viewSite")}
             </Link>
-            <button type="button" className="btn btn-ghost" onClick={handleSignOut} disabled={signingOut}>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={handleSignOut}
+              disabled={signingOut}
+            >
               {t("admin.signOut")}
             </button>
           </div>
