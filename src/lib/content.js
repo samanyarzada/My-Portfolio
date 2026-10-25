@@ -12,10 +12,16 @@ export async function fetchContent() {
   try {
     const [categories, projects, posts] = await Promise.all([
       supabase.from("categories").select("*").order("sort_order").abortSignal(controller.signal),
-      supabase.from("projects").select("*").order("sort_order").abortSignal(controller.signal),
+        supabase
+        .from("projects")
+        .select("*")
+        .eq("published", true)
+        .order("sort_order")
+        .abortSignal(controller.signal),
       supabase
         .from("posts")
         .select("*")
+        .eq("status", "published")
         .order("published_at", { ascending: false })
         .abortSignal(controller.signal),
     ]);
